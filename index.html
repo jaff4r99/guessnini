@@ -78,6 +78,49 @@ label.l{font-weight:600;display:block;margin:14px 0 6px}
 .guessing .card:not(.down) .fr{animation:wig 1s ease-in-out infinite}@keyframes wig{50%{transform:rotate(-1.5deg)}}
 .grid.ro .card{cursor:default}
 .card:not(:disabled):hover .fr{border-color:var(--yel)}
+/* question box */
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}
+.askbox{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:16px 18px;border:3px solid var(--yel)}
+.askbox .status{font-size:20px;margin-bottom:6px}
+.qbubble{display:inline-block;background:var(--bg);border-radius:18px;padding:12px 18px;font-size:clamp(20px,3vw,26px);font-weight:700;margin:6px 0 4px;animation:pop .35s cubic-bezier(.3,1.5,.6,1)}
+.ansrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.ansrow .btn{font-size:20px;padding:12px 26px;min-width:110px}
+.btn.maybe{background:#8B7FA0;color:#fff;box-shadow:0 3px 0 #655A78}
+.btn.snipe{background:#2A2233;color:#FFC93C;box-shadow:0 3px 0 #000}
+:root[data-theme="dark"] .btn.snipe{background:#FFC93C;color:#2A2233}
+.lock{font-size:14px;color:var(--mut);align-self:center}
+.meter{display:inline-block;width:70px;height:7px;border-radius:9px;background:var(--line);vertical-align:middle;margin-left:6px;overflow:hidden}.meter i{display:block;height:100%;background:var(--yel)}
+.qhist{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;max-height:120px;overflow-y:auto}.qhist:empty{display:none}
+.qa{font-size:13.5px;border-radius:10px;padding:4px 9px;background:var(--bg);border-left:4px solid var(--line)}.qa.s0{border-left-color:var(--p1)}.qa.s1{border-left-color:var(--p2)}
+.qa b{font-weight:700}.qa .yes{color:var(--good)}.qa .no{color:var(--bad)}.qa .maybe{color:#8B7FA0}.qa.snp{background:#2A2233;color:#FFC93C}
+.skipnote{background:#FDE7E4;color:#8E2C20;border-radius:10px;padding:6px 10px;font-size:14px;margin-top:8px;display:inline-block}
+.chath{margin:0 0 6px;font-size:16px;color:var(--mut)}
+.sniping .card:not(.down) .fr{animation:wig 1s ease-in-out infinite;cursor:crosshair}
+/* snipe miss pop */
+.miss{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:35;pointer-events:none}
+.miss div{background:#2A2233;color:#fff;border-radius:22px;padding:18px 26px;text-align:center;animation:missin 2.2s ease forwards;box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.miss svg{width:90px;border-radius:12px;display:block;margin:0 auto 8px;filter:grayscale(.6);animation:shake .5s .2s 2}
+.miss b{display:block;font-size:30px;color:#FF6B5A}
+@keyframes missin{0%{transform:scale(.5);opacity:0}12%{transform:scale(1.05);opacity:1}20%{transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:translateY(-30px)}}
+@keyframes shake{25%{transform:translateX(-8px) rotate(-4deg)}75%{transform:translateX(8px) rotate(4deg)}}
+/* win celebration */
+.win{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:16px;background:radial-gradient(circle at 50% 45%,rgba(60,40,90,.75),rgba(15,10,25,.92));animation:fadein .4s}
+@keyframes fadein{from{opacity:0}}
+.wincard{position:relative;text-align:center;color:#fff;max-width:620px;width:100%}
+.rays{position:absolute;left:50%;top:150px;width:520px;height:520px;margin:-260px 0 0 -260px;background:repeating-conic-gradient(rgba(255,201,60,.22) 0 10deg,transparent 10deg 20deg);border-radius:50%;animation:spin 12s linear infinite;pointer-events:none;-webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.trophy{font-size:64px;animation:drop .8s cubic-bezier(.3,1.6,.5,1) .3s both;position:relative}
+@keyframes drop{from{transform:translateY(-120px) scale(.3);opacity:0}}
+.hero{position:relative;width:180px;margin:4px auto 0;animation:flipin 1s cubic-bezier(.3,1.4,.5,1) .5s both}.hero svg{width:100%;border-radius:18px;display:block;border:5px solid #FFC93C;box-shadow:0 0 40px rgba(255,201,60,.7)}
+@keyframes flipin{from{transform:rotateY(540deg) scale(.2);opacity:0}}
+.hero .tag{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);background:#FFC93C;color:#2A2233;font-weight:700;border-radius:999px;padding:3px 12px;white-space:nowrap}
+.wtitle{font-size:clamp(34px,7vw,56px);font-weight:700;margin:26px 0 4px;position:relative}.wtitle span{display:inline-block;animation:bounce 1s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}30%{transform:translateY(-14px)}}
+.wwhy{position:relative;font-size:17px;opacity:.9;margin:0 0 14px}
+.loser{position:relative;display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);border-radius:14px;padding:6px 14px 6px 6px;margin-bottom:16px}.loser svg{width:50px;border-radius:8px;filter:grayscale(.8);animation:shake 1s 1.6s 2}
+.wscore{position:relative;font-size:15px;opacity:.8;margin-bottom:14px}
+.wincard .acts{justify-content:center;position:relative}.wincard .btn.ghost{color:#fff;border-color:rgba(255,255,255,.4)}
+.spark{position:fixed;width:7px;height:7px;border-radius:50%;z-index:21;pointer-events:none;animation:burst 1.1s cubic-bezier(.1,.7,.3,1) forwards}
+@keyframes burst{to{transform:translate(var(--dx),var(--dy));opacity:0}}
 /* lobby notice */
 .lobbybox{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;text-align:center}
 .lobbybox h2{margin:0 0 8px}.lobbybox p{color:var(--mut);margin:6px 0}
@@ -89,7 +132,7 @@ label.l{font-weight:600;display:block;margin:14px 0 6px}
 .float{position:fixed;bottom:80px;font-size:34px;pointer-events:none;animation:up 2.2s ease-out forwards;z-index:30}@keyframes up{to{transform:translateY(-55vh);opacity:0}}
 .conf{position:fixed;top:-20px;width:9px;height:9px;z-index:25;pointer-events:none;animation:fall linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(600deg)}}
 .toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;z-index:40;font-weight:600}
-@media (max-width:980px){.main{grid-template-columns:1fr}.main aside{order:-1}.log{max-height:130px}.boards.two{grid-template-columns:1fr}}
+@media (max-width:980px){.main{grid-template-columns:1fr}.log{max-height:160px}.boards.two{grid-template-columns:1fr}}
 @media (max-width:600px){.seats{grid-template-columns:1fr}.vs{display:none}.grid{grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:5px}.card .fr span{font-size:11px}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
@@ -116,10 +159,12 @@ label.l{font-weight:600;display:block;margin:14px 0 6px}
     <div class="seat s0" id="seat0"></div><div class="vs">vs</div><div class="seat s1" id="seat1"></div>
   </div>
   <div class="main">
-    <div id="stage"></div>
+    <div class="col">
+      <div class="askbox" id="askbox"><div class="status" id="status" aria-live="polite"></div><div id="controls"></div><div class="qhist" id="qhist"></div></div>
+      <div id="stage"></div>
+    </div>
     <aside class="panel">
-      <div class="status" id="status"></div>
-      <div id="controls"></div>
+      <h3 class="chath">Chat</h3>
       <div class="log" id="log" aria-live="polite"></div>
       <div class="chatrow"><input type="text" id="chat" maxlength="120" placeholder="Say something" aria-label="Chat message"><button class="btn ghost" id="send" type="button">Send</button></div>
       <div class="reacts" id="reacts"></div>
@@ -319,9 +364,11 @@ function trim() { if (S.log.length > 120) S.log.splice(0, S.log.length - 120); }
 function nameOf(id) { const p = S.people.find((x) => x.id === id); return p ? p.name : 'Someone'; }
 function commit() { S.v++; bcast({ t: 'state', s: S }); render(); }
 function gone(pid) { delete N.conns[pid]; if (!S) return; const was = S.people.find((p) => p.id === pid); if (!was) return; S.people = S.people.filter((p) => p.id !== pid); const seat = S.seats.indexOf(pid); if (seat >= 0) { S.seats[seat] = null; if (S.phase === 'play' || S.phase === 'pick') { S.phase = 'lobby'; sys(was.name + ' left, so the game stopped.'); } } sys(was.name + ' left the room.'); commit(); }
+const SNIPE_AT = 10;
+function nextTurn() { S.turn = 1 - S.turn; S.step = 'ask'; S.q = null; if (S.skip && S.skip[S.turn]) { S.skip[S.turn] = false; sys(S.names[S.turn] + ' sits this turn out after a missed snipe.'); S.turn = 1 - S.turn; } }
 function startGame() {
   const a = Math.floor(Math.random() * PEOPLE.length); let b; do { b = Math.floor(Math.random() * PEOPLE.length); } while (b === a);
-  S.secrets = [PEOPLE[a].id, PEOPLE[b].id]; S.flips = [[], []]; S.turn = Math.random() < 0.5 ? 0 : 1; S.step = 'ask'; S.q = null; S.winner = null; S.phase = 'play';
+  S.secrets = [PEOPLE[a].id, PEOPLE[b].id]; S.flips = [[], []]; S.skip = [false, false]; S.lastMiss = null; S.turn = Math.random() < 0.5 ? 0 : 1; S.step = 'ask'; S.q = null; S.winner = null; S.phase = 'play';
   S.names = [nameOf(S.seats[0]), nameOf(S.seats[1])];
   if (S.pickMode !== false) { S.secrets = [null, null]; S.phase = 'pick'; sys(S.names[0] + ' and ' + S.names[1] + ' are picking their secret people.'); return; }
   sys('New game: ' + S.names[0] + ' vs ' + S.names[1] + '. ' + S.names[S.turn] + ' goes first.');
@@ -341,8 +388,11 @@ function onHost(from, m) {
     case 'ask': if (S.phase === 'play' && seat === S.turn && S.step === 'ask') { const q = String(m.text || '').trim().slice(0, 140); if (!q) return; S.q = q; S.step = 'answer'; S.log.push({ k: 'q', s: seat, text: q }); trim(); } break;
     case 'answer': if (S.phase === 'play' && seat === 1 - S.turn && S.step === 'answer' && ['yes', 'no', 'maybe'].includes(m.v)) { S.log.push({ k: 'a', s: seat, v: m.v }); S.step = 'flip'; trim(); } break;
     case 'flip': if (S.phase === 'play' && seat >= 0 && PBY[m.id]) { const f = S.flips[seat], i = f.indexOf(m.id); if (i >= 0) f.splice(i, 1); else f.push(m.id); } break;
-    case 'end': if (S.phase === 'play' && seat === S.turn && S.step === 'flip') { S.turn = 1 - S.turn; S.step = 'ask'; S.q = null; } break;
-    case 'guess': if (S.phase === 'play' && seat === S.turn && S.step !== 'answer' && PBY[m.id]) { const right = S.secrets[other] === m.id; S.winner = right ? seat : other; S.phase = 'over'; S.score[S.winner]++; S.lastGuess = { s: seat, id: m.id, right }; S.log.push({ k: 'g', s: seat, id: m.id, right }); trim(); } break;
+    case 'end': if (S.phase === 'play' && seat === S.turn && S.step === 'flip') nextTurn(); break;
+    case 'guess': if (S.phase === 'play' && seat === S.turn && S.step !== 'answer' && PBY[m.id] && S.flips[seat].length >= SNIPE_AT && !S.flips[seat].includes(m.id)) {
+      const right = S.secrets[other] === m.id; S.log.push({ k: 'g', s: seat, id: m.id, right }); trim();
+      if (right) { S.winner = seat; S.phase = 'over'; S.score[seat]++; S.lastGuess = { s: seat, id: m.id, right }; }
+      else { S.flips[seat].push(m.id); S.skip[seat] = true; S.lastMiss = { s: seat, id: m.id, n: (S.lastMiss ? S.lastMiss.n : 0) + 1 }; nextTurn(); } } break;
     case 'chat': { const t = String(m.text || '').trim().slice(0, 120); if (t) { S.log.push({ k: 'c', name: nameOf(from), s: seat, text: t }); trim(); } break; }
     case 'react': { const e = REACTS.includes(m.e) ? m.e : null; if (e) { bcast({ t: 'react', e }); floatEmoji(e); } return; }
     case 'again': if (seat >= 0 && S.phase === 'over' && S.seats[0] && S.seats[1]) startGame(); break;
@@ -393,61 +443,89 @@ function render() {
     }
     [0, 1].forEach((i) => { const g = $('g' + i); if (!g) return; const f = S.flips[i];
       g.querySelectorAll('.card').forEach((c) => { const id = c.dataset.id; c.classList.toggle('down', f.includes(id)); c.classList.toggle('secret', watching && S.secrets[1 - i] === id); c.classList.toggle('picked', S.phase === 'over' && S.lastGuess && S.lastGuess.s === i && S.lastGuess.id === id); c.disabled = watching || S.phase !== 'play'; });
-      g.classList.toggle('guessing', !watching && guessMode && S.phase === 'play');
+      g.classList.toggle('sniping', !watching && guessMode && S.phase === 'play');
       const cnt = $('cnt' + i); if (cnt) cnt.textContent = '· ' + (PEOPLE.length - f.length) + ' still standing'; });
   }
-  // status + controls
+  // question box (separate from chat)
   const st = $('status'), ctl = $('controls'); let sHTML = '', cHTML = '';
   const tn = S.names[S.turn], on = S.names[1 - S.turn];
-  if (S.phase === 'pick') sHTML = watching ? 'The players are picking their secret people.' : S.secrets[mySeat] ? 'Locked in: ' + esc(PBY[S.secrets[mySeat]].name) + '.' : 'Tap a card to choose who you are.';
+  const flipped = mySeat >= 0 && S.flips ? S.flips[mySeat].length : 0;
+  const snipeBtn = () => flipped >= SNIPE_AT ? '<button class="btn snipe" data-guesson type="button">🎯 Snipe</button>' : '<span class="lock">🎯 Snipe unlocks after you flip down ' + SNIPE_AT + ' cards (' + flipped + '/' + SNIPE_AT + ')<span class="meter"><i style="width:' + Math.min(100, flipped * 100 / SNIPE_AT) + '%"></i></span></span>';
+  const snipeCtl = '<div class="acts"><button class="btn ghost" data-guessoff type="button">Cancel snipe</button></div>';
+  const lastA = () => [...S.log].reverse().find((l) => l.k === 'a');
+  if (S.phase === 'pick') sHTML = watching ? 'The players are picking their secret people.' : S.secrets[mySeat] ? 'Locked in: ' + esc(PBY[S.secrets[mySeat]].name) + '.' : 'Tap a card below to choose who you are.';
   else if (S.phase === 'lobby') sHTML = watching ? 'You are watching. Grab a seat to play.' : 'You are Player ' + (mySeat + 1) + '.';
-  else if (S.phase === 'over') { sHTML = esc(S.names[S.winner]) + ' wins!'; if (!watching) cHTML = '<div class="acts"><button class="btn" data-again type="button">Play again</button><button class="btn ghost" data-stand type="button">Let someone else play</button></div>'; }
+  else if (S.phase === 'over') { sHTML = '🏆 ' + esc(S.names[S.winner]) + ' wins!'; if (!watching) cHTML = '<div class="acts"><button class="btn" data-again type="button">Play again</button><button class="btn ghost" data-stand type="button">Let someone else play</button></div>'; }
   else if (watching) {
-    sHTML = S.step === 'ask' ? esc(tn) + ' is thinking of a question...' : S.step === 'answer' ? esc(tn) + ' asked:<span class="q">' + esc(S.q) + '</span><small style="color:var(--mut)">Waiting for ' + esc(on) + ' to answer</small>' : esc(tn) + ' is flipping down cards.';
+    sHTML = S.step === 'ask' ? esc(tn) + ' is thinking of a question...' : S.step === 'answer' ? esc(tn) + ' asks ' + esc(on) + ':<br><span class="qbubble">' + esc(S.q) + '</span>' : esc(on) + ' answered <b class="' + (lastA() || {}).v + '">' + ANS[(lastA() || {}).v] + '</b>. ' + esc(tn) + ' is flipping cards.';
   } else if (mySeat === S.turn) {
-    if (S.step === 'ask') { sHTML = guessMode ? 'Tap the person you think it is. A wrong guess loses the game.' : 'Your turn. Ask a yes or no question, or make a guess.';
-      cHTML = guessMode ? '<div class="acts"><button class="btn ghost" data-guessoff type="button">Cancel guess</button></div>' : '<div class="hrow"><input type="text" id="qin" maxlength="140" placeholder="Is your person wearing glasses?" aria-label="Your question"><button class="btn" data-ask type="button">Ask</button></div><div class="chips">' + CHIPS.map((c) => '<button class="chip" type="button" data-chip>' + esc(c) + '</button>').join('') + '</div><div class="acts"><button class="btn ghost" data-guesson type="button">Make a guess</button></div>'; }
-    else if (S.step === 'answer') sHTML = 'You asked:<span class="q">' + esc(S.q) + '</span><small style="color:var(--mut)">Waiting for ' + esc(on) + ' to answer...</small>';
-    else { const last = [...S.log].reverse().find((l) => l.k === 'a'); sHTML = esc(on) + ' said <b class="' + (last ? last.v : '') + '" style="color:var(--' + (last && last.v === 'yes' ? 'good' : last && last.v === 'no' ? 'bad' : 'mut') + ')">' + (last ? ANS[last.v] : '') + '</b> to "' + esc(S.q) + '". Tap cards to flip down everyone it rules out.';
-      cHTML = guessMode ? '<div class="acts"><button class="btn ghost" data-guessoff type="button">Cancel guess</button></div>' : '<div class="acts"><button class="btn" data-end type="button">Done, end my turn</button><button class="btn ghost" data-guesson type="button">Make a guess</button></div>'; }
+    if (guessMode) { sHTML = '🎯 Tap the person you think ' + esc(on) + ' is. If you miss, you lose your next turn.'; cHTML = snipeCtl; }
+    else if (S.step === 'ask') { sHTML = 'Your turn. Ask ' + esc(on) + ' a yes or no question.';
+      cHTML = '<div class="hrow"><input type="text" id="qin" maxlength="140" placeholder="Type your own question, e.g. Do they wear a cap?" aria-label="Your question"><button class="btn" data-ask type="button">Ask</button></div><div class="chips">' + CHIPS.map((c) => '<button class="chip" type="button" data-chip>' + esc(c) + '</button>').join('') + '</div><div class="acts">' + snipeBtn() + '</div>'; }
+    else if (S.step === 'answer') sHTML = 'You asked:<br><span class="qbubble">' + esc(S.q) + '</span><br><small style="color:var(--mut)">Waiting for ' + esc(on) + ' to answer...</small>';
+    else { const la = lastA(); sHTML = esc(on) + ' said <b class="' + (la ? la.v : '') + '" style="color:var(--' + (la && la.v === 'yes' ? 'good' : la && la.v === 'no' ? 'bad' : 'mut') + ')">' + (la ? ANS[la.v] : '') + '</b> to "' + esc(S.q) + '". Flip down everyone it rules out.';
+      cHTML = '<div class="acts"><button class="btn" data-end type="button">Done, end my turn</button>' + snipeBtn() + '</div>'; }
   } else {
-    if (S.step === 'answer') { sHTML = esc(tn) + ' asks:<span class="q">' + esc(S.q) + '</span><small style="color:var(--mut)">Answer for <b>' + esc(PBY[S.secrets[mySeat]].name) + '</b>, your secret person.</small>';
-      cHTML = '<div class="acts"><button class="btn good" data-ans="yes" type="button">Yes</button><button class="btn bad" data-ans="no" type="button">No</button><button class="btn ghost" data-ans="maybe" type="button">Not sure</button></div>'; }
+    if (S.step === 'answer') { sHTML = esc(tn) + ' asks you:<br><span class="qbubble">' + esc(S.q) + '</span><br><small style="color:var(--mut)">Answer for <b>' + esc(PBY[S.secrets[mySeat]].name) + '</b>, your secret person.</small>';
+      cHTML = '<div class="ansrow"><button class="btn good" data-ans="yes" type="button">Yes</button><button class="btn bad" data-ans="no" type="button">No</button><button class="btn maybe" data-ans="maybe" type="button">Maybe</button></div>'; }
     else sHTML = S.step === 'ask' ? esc(tn) + ' is thinking of a question...' : esc(tn) + ' is flipping cards. You can flip yours any time.';
   }
+  if (S.phase === 'play' && S.skip) { if (mySeat >= 0 && S.skip[mySeat]) cHTML += '<div class="skipnote">You missed a snipe, so you sit out your next turn.</div>'; else if (watching) [0, 1].forEach((i) => { if (S.skip[i]) cHTML += '<div class="skipnote">' + esc(S.names[i]) + ' misses their next turn.</div>'; }); }
   st.innerHTML = sHTML; if (ctl.dataset.html !== cHTML) { ctl.innerHTML = cHTML; ctl.dataset.html = cHTML; const qi = $('qin'); if (qi) qi.focus({ preventScroll: true }); }
+  $('askbox').hidden = S.phase === 'lobby';
+  // question history
+  const qa = []; S.log.forEach((l) => { if (l.k === 'q') qa.push({ s: l.s, q: l.text }); else if (l.k === 'a' && qa.length && !qa[qa.length - 1].a) qa[qa.length - 1].a = l.v; else if (l.k === 'g') qa.push({ s: l.s, g: l.id, right: l.right }); });
+  const sinceStart = S.log.map((l) => l.k).lastIndexOf('sys');
+  $('qhist').innerHTML = S.phase === 'play' || S.phase === 'over' ? qa.slice(-14).map((x) => x.g ? '<span class="qa snp s' + x.s + '">🎯 <b>' + esc(S.names[x.s]) + '</b> sniped ' + esc(label(PBY[x.g])) + ': ' + (x.right ? 'HIT' : 'MISS') + '</span>' : '<span class="qa s' + x.s + '"><b>' + esc(S.names[x.s]) + ':</b> ' + esc(x.q) + ' <b class="' + (x.a || '') + '">' + (x.a ? ANS[x.a] : '...') + '</b></span>').join('') : '';
+  if (S.lastMiss && S.lastMiss.n !== lastMissN) { if (lastMissN !== -1 || S.phase === 'play') missPop(S.lastMiss); lastMissN = S.lastMiss.n; }
   // log
   if (lastLog !== S.log.length + ':' + S.v) { const L = $('log'), atBottom = L.scrollHeight - L.scrollTop - L.clientHeight < 40; lastLog = S.log.length + ':' + S.v;
-    L.innerHTML = S.log.map(logHTML).join(''); if (atBottom || true) L.scrollTop = L.scrollHeight; }
+    L.innerHTML = S.log.filter((l) => l.k !== 'q' && l.k !== 'a').map(logHTML).join(''); if (atBottom || true) L.scrollTop = L.scrollHeight; }
   // watchers
   const w = S.people.filter((p) => !S.seats.includes(p.id)).map((p) => esc(p.name) + (p.id === ME.id ? ' (you)' : ''));
   $('watchers').textContent = ''; $('watchers').innerHTML = w.length ? 'Watching: ' + w.join(', ') : 'Nobody watching yet.';
   // game over overlay
   const overKey = S.phase === 'over' ? S.v + ':' + S.winner : '';
+  if (S.phase !== 'play') guessMode = false;
   if (S.phase === 'over' && lastOver !== S.secrets.join() + S.score.join()) { lastOver = S.secrets.join() + S.score.join(); gameOver(mySeat); }
   if (S.phase !== 'over') { $('overlay').innerHTML = ''; lastOver = S.phase === 'play' ? '' : lastOver; }
 }
 function modeHTML(canEdit) { const pick = S.pickMode !== false;
   if (!canEdit) return '<p>Secret people: <b>' + (pick ? 'each player picks their own' : 'random') + '</b></p>';
   return '<p style="margin-top:12px">How should secret people be chosen?</p><div class="acts" style="justify-content:center"><button type="button" class="btn ' + (pick ? '' : 'ghost') + '" data-mode="pick" aria-pressed="' + pick + '">Each player picks</button><button type="button" class="btn ' + (pick ? 'ghost' : '') + '" data-mode="random" aria-pressed="' + !pick + '">Random</button></div>'; }
-const ANS = { yes: 'YES', no: 'NO', maybe: 'NOT SURE' };
+const ANS = { yes: 'YES', no: 'NO', maybe: 'MAYBE' };
+let lastMissN = -1;
 function cardHTML(p, board, live) { return '<button class="card" type="button" data-id="' + p.id + '" aria-label="' + esc(p.name) + '"' + (live ? '' : ' tabindex="-1"') + '><span class="in"><span class="fr">' + SVG[p.id] + '<span>' + esc(label(p)) + '</span></span><span class="bk">' + esc(label(p)) + '</span></span></button>'; }
 function logHTML(l) {
   const who = (s) => '<b class="c' + s + '">' + esc(S.names[s] || '') + '</b>';
   if (l.k === 'sys') return '<div class="sys">' + esc(l.text) + '</div>';
   if (l.k === 'q') return '<div class="q">' + who(l.s) + ': ' + esc(l.text) + '</div>';
   if (l.k === 'a') return '<div>' + who(l.s) + ': <span class="a ' + l.v + '">' + ANS[l.v] + '</span></div>';
-  if (l.k === 'g') return '<div class="gw">' + who(l.s) + ' guessed ' + esc(PBY[l.id].name) + '... ' + (l.right ? 'correct!' : 'wrong!') + '</div>';
+  if (l.k === 'g') return '<div class="gw">' + who(l.s) + ' tried a snipe on ' + esc(PBY[l.id].name) + '... ' + (l.right ? 'HIT! 🎯' : 'missed!') + '</div>';
   if (l.k === 'c') return '<div>' + (l.s >= 0 ? '<b class="c' + l.s + '">' : '<b>') + esc(l.name) + '</b> ' + esc(l.text) + '</div>';
   return '';
 }
 function gameOver(mySeat) {
-  const g = S.lastGuess, w = S.winner, me = mySeat === w;
-  const head = mySeat < 0 ? esc(S.names[w]) + ' wins!' : me ? 'You win!' : 'You lose';
-  const why = g.right ? esc(S.names[g.s]) + ' guessed ' + esc(PBY[g.id].name) + ' correctly.' : esc(S.names[g.s]) + ' guessed ' + esc(PBY[g.id].name) + ', but it was ' + esc(PBY[S.secrets[1 - g.s]].name) + '.';
-  $('overlay').innerHTML = '<div class="over" data-close><div class="overcard" role="dialog" aria-label="Game over"><h2>' + head + '</h2><p>' + why + '</p><div class="reveal">' + [0, 1].map((i) => '<div>' + SVG[S.secrets[i]] + '<small>' + esc(S.names[i]) + ' was</small><b>' + esc(PBY[S.secrets[i]].name) + '</b></div>').join('') + '</div><p style="color:var(--mut)">Score: ' + esc(S.names[0]) + ' ' + S.score[0] + ', ' + esc(S.names[1]) + ' ' + S.score[1] + '</p><div class="acts" style="justify-content:center">' + (mySeat >= 0 ? '<button class="btn" data-again type="button">Play again</button>' : '') + '<button class="btn ghost" data-close type="button">Close</button></div></div></div>';
-  if (g.right) confetti();
+  const g = S.lastGuess, w = S.winner, l = 1 - w, me = mySeat === w;
+  const head = mySeat < 0 ? esc(S.names[w]) + ' wins!' : me ? 'You win!' : esc(S.names[w]) + ' wins!';
+  const title = head.split(' ').map((wd, i) => '<span style="animation-delay:' + i * 0.12 + 's">' + wd + '</span>').join(' ');
+  const shots = S.log.filter((x) => x.k === 'q' && x.s === w).length;
+  $('overlay').innerHTML = '<div class="win" role="dialog" aria-label="Game over"><div class="wincard"><div class="rays"></div><div class="trophy">🏆</div>'
+    + '<div class="hero">' + SVG[g.id] + '<span class="tag">🎯 ' + esc(PBY[g.id].name) + '</span></div>'
+    + '<div class="wtitle">' + title + '</div><p class="wwhy">' + esc(S.names[w]) + ' sniped ' + esc(PBY[g.id].name) + ' after ' + shots + (shots === 1 ? ' question.' : ' questions.') + '</p>'
+    + '<div class="loser">' + SVG[S.secrets[w]] + '<span>' + esc(S.names[l]) + ' never found <b>' + esc(PBY[S.secrets[w]].name) + '</b></span></div>'
+    + '<div class="wscore">Score: ' + esc(S.names[0]) + ' ' + S.score[0] + ' · ' + esc(S.names[1]) + ' ' + S.score[1] + '</div>'
+    + '<div class="acts">' + (mySeat >= 0 ? '<button class="btn" data-again type="button">Play again</button>' : '') + '<button class="btn ghost" data-close type="button">Close</button></div></div></div>';
+  confetti(); fireworks(); fanfare(mySeat < 0 || me);
 }
+function fireworks() { const cols = ['#FFC93C', '#FF6B8A', '#5BC0EB', '#9BE564', '#C77DFF', '#FFFFFF']; let n = 0;
+  const one = () => { const x = 10 + Math.random() * 80, y = 10 + Math.random() * 45, c = cols[n % cols.length];
+    for (let i = 0; i < 22; i++) { const a = (i / 22) * Math.PI * 2, r = 70 + Math.random() * 60, d = document.createElement('i'); d.className = 'spark'; d.style.left = x + 'vw'; d.style.top = y + 'vh'; d.style.background = c; d.style.setProperty('--dx', Math.cos(a) * r + 'px'); d.style.setProperty('--dy', Math.sin(a) * r + 'px'); document.body.appendChild(d); setTimeout(() => d.remove(), 1200); }
+    if (++n < 9) setTimeout(one, 260 + Math.random() * 280); };
+  one(); }
+let AC = null;
+function fanfare(happy) { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const notes = happy ? [523, 659, 784, 1047, 784, 1047, 1319] : [392, 370, 349, 330]; notes.forEach((f, i) => { const t = AC.currentTime + i * (happy ? 0.13 : 0.22), o = AC.createOscillator(), g = AC.createGain(); o.type = 'triangle'; o.frequency.value = f; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.12, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3); o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + 0.32); }); } catch (_) {} }
+function missPop(m) { const d = document.createElement('div'); d.className = 'miss'; d.innerHTML = '<div>' + SVG[m.id] + '<b>MISSED!</b>' + esc(S.names[m.s]) + ' sniped ' + esc(PBY[m.id].name) + ' and loses a turn</div>'; document.body.appendChild(d); setTimeout(() => d.remove(), 2300); try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); [300, 200].forEach((f, i) => { const t = AC.currentTime + i * 0.15, o = AC.createOscillator(), g = AC.createGain(); o.type = 'sawtooth'; o.frequency.value = f; g.gain.setValueAtTime(0.06, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.25); o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + 0.27); }); } catch (_) {} }
 function confetti() { const cols = ['#D9433B', '#2F6DB5', '#FFC93C', '#2E9A5E', '#C77DFF']; for (let i = 0; i < 80; i++) { const d = document.createElement('i'); d.className = 'conf'; d.style.left = Math.random() * 100 + 'vw'; d.style.background = cols[i % 5]; d.style.animationDuration = 2 + Math.random() * 2.5 + 's'; d.style.animationDelay = Math.random() * 0.8 + 's'; document.body.appendChild(d); setTimeout(() => d.remove(), 6000); } }
 function floatEmoji(e) { const d = document.createElement('div'); d.className = 'float'; d.textContent = e; d.style.left = 10 + Math.random() * 80 + 'vw'; document.body.appendChild(d); setTimeout(() => d.remove(), 2300); }
 function toast(t) { const d = document.createElement('div'); d.className = 'toast'; d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 2600); }
@@ -473,7 +551,7 @@ document.addEventListener('click', (e) => {
   else if (t.classList.contains('card') && !t.disabled && S && S.phase === 'pick' && S.seats.includes(ME.id)) toHost({ t: 'choose', id: t.dataset.id });
   else if (t.classList.contains('card') && !t.disabled && S && S.phase === 'play') {
     const id = t.dataset.id, mySeat = S.seats.indexOf(ME.id);
-    if (guessMode) { if (t.classList.contains('down')) { toast('That card is flipped down. Pick someone still standing.'); return; } if (confirm('Final guess: ' + PBY[id].name + '? If you are wrong, you lose.')) { guessMode = false; toHost({ t: 'guess', id }); } }
+    if (guessMode) { if (t.classList.contains('down')) { toast('That card is flipped down. Pick someone still standing.'); return; } if (confirm('Snipe ' + PBY[id].name + '? If you miss, you lose your next turn.')) { guessMode = false; toHost({ t: 'guess', id }); } }
     else if (mySeat >= 0) { t.classList.toggle('down'); toHost({ t: 'flip', id }); }
   }
   else if (t.id === 'send') sendChat();
